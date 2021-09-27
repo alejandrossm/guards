@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Prueba de Storage
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p>Prueba el funcionamiento registrando un usuario 'wacoldo'</p>
+  <form #formulario="ngForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Usuario <ion-text *ngIf="formulario.invalid" color="danger">*</ion-text></ion-label>
+      <ion-input type="text" required id="txtusername" name="usr" [(ngModel)]="usuario.username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password <ion-text *ngIf="formulario.invalid" color="danger">*</ion-text></ion-label>
+      <ion-input type="password" required id="txtpassword" name="psw" [(ngModel)]="usuario.password"></ion-input>
+    </ion-item>
+
+   
+
+    <ion-button type="submit" expand="block" [disabled]="formulario.invalid">
+      Registrar
+    </ion-button>
+
+
+  </form>
+  <ion-text color="primary">
+    <p>Este boton cambia el session de local storage a wacoldo</p>
+  </ion-text>
+  <ion-button (click)="cambiarEstado()" expand="block" >
+    Cambiar Estado a Wacoldo
+  </ion-button>
+  <ion-button  expand="block" routerLink="../solouno">
+    Comprobar sesion wacoldo
+  </ion-button>
+  <ion-button (click)="cargarDatos()" expand="block">
+    Cargar Datos
+  </ion-button>
+  <ion-list *ngFor="let user of datos" >
+    <ion-item>
+      <ion-label>{{user.username}}</ion-label>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

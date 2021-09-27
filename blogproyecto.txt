@@ -1,0 +1,34 @@
+1. Instalar storage************************
+
+npm install @ionic/storage-angular
+-------------------
+
+2. en app.module.ts*********************************
+
+import { IonicStorageModule } from '@ionic/storage-angular';
+
+@NgModule({
+  imports: [
+    IonicStorageModule.forRoot()
+  ]
+})
+export class AppModule { }
+
+
+---------------------------
+3. En app.component.ts *************************
+import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
+})
+export class AppComponent {
+  constructor(private storage:Storage) {}
+
+  async ngOnInit() {
+    await this.storage.create();
+  }
+}
